@@ -1,0 +1,26 @@
+# Browser automation (Google Meet via CDP)
+playwright
+
+# Transcription + LLM structuring (Groq: Whisper large-v3 + Llama)
+groq
+
+# Audio preprocessing (denoise + normalize)
+numpy
+soundfile
+noisereduce
+
+# Telegram bot + userbot for TG calls
+python-telegram-bot
+pyrogram
+tgcrypto
+pytgcalls
+
+# Document export
+python-docx
+google-api-python-client
+google-auth
+google-auth-httplib2
+
+# Telegram Desktop button detection (screenshot color match)
+Pillow
+pyautogui

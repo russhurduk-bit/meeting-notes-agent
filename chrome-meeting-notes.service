@@ -1,0 +1,45 @@
+[Unit]
+Description=Chrome for the Meeting Notes Agent (Google Meet recorder)
+After=network.target
+
+[Service]
+Type=simple
+# Adjust the install path to wherever you deploy the project.
+Environment=INSTALL_DIR=/opt/meeting-notes-agent
+Environment=DISPLAY=:99
+Environment=PULSE_SINK=meet_capture
+Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/0/bus
+# Path to the Chrome/Chromium binary
+Environment=CHROME_BIN=google-chrome
+ExecStartPre=/bin/bash -c 'rm -f ${INSTALL_DIR}/profiles/meet_bot/Singleton*'
+ExecStart=/bin/bash -c '${CHROME_BIN} \
+    --remote-debugging-port=9333 \
+    --remote-allow-origins=* \
+    --user-data-dir=${INSTALL_DIR}/profiles/meet_bot \
+    --no-sandbox \
+    --no-first-run \
+    --no-default-browser-check \
+    --use-gl=angle \
+    --use-angle=swiftshader \
+    --enable-unsafe-swiftshader \
+    --enable-webgl \
+    --ignore-gpu-blocklist \
+    --use-fake-ui-for-media-stream \
+    --use-fake-device-for-media-stream \
+    --auto-accept-camera-and-microphone-capture \
+    --disable-features=WebRtcHideLocalIpsWithMdns \
+    --disable-sync \
+    --disable-translate \
+    --disable-breakpad \
+    --disable-crash-reporter \
+    --noerrdialogs \
+    --window-size=1280,720 \
+    --lang=en-US \
+    about:blank'
+StandardOutput=append:/opt/meeting-notes-agent/logs/chrome.log
+StandardError=append:/opt/meeting-notes-agent/logs/chrome.log
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
