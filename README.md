@@ -64,8 +64,8 @@ runs on a headless server.
    - *Telegram:* `tg_call_desktop.py` opens the `tg://call?slug=...` link in
      Telegram Desktop on a virtual X display, screenshots the window, and finds
      the blue **Join Group Call** button by matching its RGB color, then clicks it
-     with `pyautogui`. `tg_call.py` is an alternative Pyrogram + pytgcalls
-     userbot implementation.
+     with `pyautogui`. `tg_call.py` is a legacy Pyrogram + pytgcalls
+     alternative that is not part of the supported base install.
 
 2. **Capture audio** — `audio_capture.py` creates a PulseAudio `module-null-sink`,
    sets it as the default output so all call audio flows into it, and records the
@@ -103,7 +103,7 @@ runs on a headless server.
 | `structurize.py` | LLM structuring of the transcript into meeting minutes |
 | `doc_export.py` | Markdown → `.docx` export |
 | `gdoc_export.py` | Markdown → Google Doc export (service account) |
-| `tg_call.py` | Pyrogram + pytgcalls userbot for joining TG group calls |
+| `tg_call.py` | Legacy Pyrogram + pytgcalls variant; excluded from the base install because its available native dependencies do not resolve on Python 3.12 |
 | `tg_call_desktop.py` | Telegram Desktop GUI automation for joining TG calls |
 | `watchdog.sh` | Cron watchdog — restarts PulseAudio / Chrome / Telegram Desktop if they die |
 | `chrome-meeting-notes.service` | systemd unit that keeps the Meet Chrome instance running |

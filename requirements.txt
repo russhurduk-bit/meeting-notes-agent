@@ -13,7 +13,6 @@ noisereduce
 python-telegram-bot
 pyrogram
 tgcrypto
-pytgcalls
 
 # Document export
 python-docx
